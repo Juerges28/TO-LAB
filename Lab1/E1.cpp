@@ -26,9 +26,11 @@ void comprobar(int n){
 }
 
 int main(){
-    int num[] = {27, 64, 121, 125, 153, 216, 343};
+    int num[] = {27, 64, 121, 125, 153, 216, 371};
     for (int i = 0; i < sizeof(num)/sizeof(int); i++){
         comprobar(num[i]);
     }
     return 0;
 }
+
+// imprimir 10 numeroos seguidos
