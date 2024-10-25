@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>619</width>
+    <height>403</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Información de Países</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
+    <item>
+     <widget class="QLabel" name="labelTitle">
+      <property name="styleSheet">
+       <string notr="true">font-size: 20px; font-weight: bold; color: #333333;</string>
+      </property>
+      <property name="text">
+       <string>Información de Países</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayoutRight">
+        <property name="sizeConstraint">
+         <enum>QLayout::SizeConstraint::SetMinAndMaxSize</enum>
+        </property>
+        <item>
+         <widget class="QListWidget" name="listWidget">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>200</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelCapital">
+          <property name="styleSheet">
+           <string notr="true">font-size: 14px; color: #333333;</string>
+          </property>
+          <property name="text">
+           <string>Seleccione un país</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelLenguaje">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font-size: 14px; color: #333333;</string>
+          </property>
+          <property name="text">
+           <string>El idioma aparecerá aquí</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
