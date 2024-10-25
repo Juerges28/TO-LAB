@@ -2,20 +2,26 @@
 #include <QDebug>
 #include "adulto.h"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     QCoreApplication a(argc, argv);
 
+    // Creación de objetos adulto
     adulto *papa = new adulto;
-    adulto *hijo1 = new adulto(papa);
-    adulto *hijo2 = new adulto(papa);
+    adulto *pepe = new adulto(papa);
+    adulto *jose = new adulto(papa);
 
-    hijo1->setNombre("manuel");
-    hijo2->setNombre("Jose");
+    pepe->setNombre("Pepe");
+    jose->setNombre("Jose");
 
-    qDebug() << "Nombre del hijo 1:" << hijo1->getNombre();
-    qDebug() << "Nombre del hijo 2:" << hijo2->getNombre();
+    // Conexión de señales y slots entre las instancias de Comunicacion de los adultos
+    QObject::connect(pepe->getComunicacion(), SIGNAL(enviarmensaje(QString)), jose->getComunicacion(), SLOT(escuchar(QString)));
+    QObject::connect(jose->getComunicacion(), SIGNAL(enviarmensaje(QString)), pepe->getComunicacion(), SLOT(escuchar(QString)));
 
-    delete papa; // Destruye también a los hijos
+    pepe->getComunicacion()->conversar("Buenos días");
+    jose->getComunicacion()->conversar("¿Cómo vas?");
+
+    delete papa;
 
     return a.exec();
 }
