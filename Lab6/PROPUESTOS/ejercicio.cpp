@@ -7,11 +7,11 @@
 
 using namespace std;
 
-std::mutex listMutex;
+mutex listMutex;
 
 struct Node {
     int value;
-    std::shared_ptr<Node> next;
+    shared_ptr<Node> next;
     Node(int val) : value(val), next(nullptr) {}
 };
 
@@ -20,17 +20,17 @@ public:
     LinkedList() : head(nullptr) {}
 
     void insert(int value) {
-        std::lock_guard<std::mutex> lock(listMutex);
-        auto newNode = std::make_shared<Node>(value);
+        lock_guard<mutex> lock(listMutex);
+        auto newNode = make_shared<Node>(value);
         newNode->next = head;
         head = newNode;
-        std::cout << "Insertando: " << value << std::endl;
+        cout << "Insertando: " << value << endl;
     }
 
     bool remove(int value) {
-        std::lock_guard<std::mutex> lock(listMutex);
+        lock_guard<mutex> lock(listMutex);
         auto current = head;
-        std::shared_ptr<Node> previous = nullptr;
+        shared_ptr<Node> previous = nullptr;
         while (current) {
             if (current->value == value) {
                 if (previous) {
@@ -38,48 +38,48 @@ public:
                 } else {
                     head = current->next;
                 }
-                std::cout << "Eliminando: " << value << std::endl;
+                cout << "Eliminando: " << value << endl;
                 return true;
             }
             previous = current;
             current = current->next;
         }
-        std::cout << "No se eliminó: " << value << std::endl;
+        cout << "No se eliminó: " << value << endl;
         return false;
     }
 
     bool find(int value) {
-        std::lock_guard<std::mutex> lock(listMutex);
+        lock_guard<mutex> lock(listMutex);
         auto current = head;
         while (current) {
             if (current->value == value) {
-                std::cout << "Buscado: " << value << std::endl;
+                cout << "Buscado: " << value << endl;
                 return true;
             }
             current = current->next;
         }
-        std::cout << "No encontrado: " << value << std::endl;
+        cout << "No encontrado: " << value << endl;
         return false;
     }
 
     bool modify(int oldValue, int increment) {
-        std::lock_guard<std::mutex> lock(listMutex);
+        lock_guard<mutex> lock(listMutex);
         auto current = head;
         while (current) {
             if (current->value == oldValue) {
                 int newValue = oldValue + increment;
-                std::cout << "Modificando " << oldValue << " a " << newValue << std::endl;
+                cout << "Modificando " << oldValue << " a " << newValue << endl;
                 current->value = newValue;
                 return true;
             }
             current = current->next;
         }
-        std::cout << "No se encontró " << oldValue << std::endl;
+        cout << "No se encontró " << oldValue << endl;
         return false;
     }
 
 private:
-    std::shared_ptr<Node> head;
+    shared_ptr<Node> head;
 };
 
 // Función para realizar eliminaciones aleatorias
@@ -120,10 +120,10 @@ int main() {
     LinkedList list;
 
     // Crear y lanzar hilos
-    std::thread t1(threadRemove, std::ref(list));
-    std::thread t2(threadInsert, std::ref(list));
-    std::thread t3(threadFind, std::ref(list));
-    std::thread t4(threadModify, std::ref(list));
+    thread t1(threadRemove, ref(list));
+    thread t2(threadInsert, ref(list));
+    thread t3(threadFind, ref(list));
+    thread t4(threadModify, ref(list));
 
     // Esperar a que los hilos terminen
     t1.join();
