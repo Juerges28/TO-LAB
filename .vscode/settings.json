@@ -46,6 +46,11 @@
         "bitset": "cpp",
         "cstring": "cpp",
         "regex": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "chrono": "cpp",
+        "condition_variable": "cpp",
+        "ratio": "cpp",
+        "mutex": "cpp",
+        "thread": "cpp"
     }
 }
